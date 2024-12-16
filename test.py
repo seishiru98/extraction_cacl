@@ -103,14 +103,15 @@ V_drop = np.pi * d_calc**3 / 6
 F = np.pi * d_calc**2
 
 Q_o = 0.0000001
-S = np.pi * d_calc**2 / 4
+d_column = 0.051
+S = np.pi * d_column**2 / 4
 
 e_o = Q_o / S * w_0
 print(e_o)
 e_w = 1 - e_o
 print(e_w)
 
-a = 3 * e_o / (d_calc/2)
+a = 6 * e_o / d_calc
 print(a)
 
 # Определяем функцию для системы уравнений
@@ -123,7 +124,7 @@ def dCdt(y, t):
     return [dc1_dt, dc2_dt]
 
 # Интервал времени
-t_span = np.linspace(0, 500, 500)
+t_span = np.linspace(0, 10, 20)
 
 # Начальные условия
 c0 = [12.54, 0]
@@ -134,7 +135,7 @@ print(solution)
 
 # Построение графиков
 plt.plot(t_span, solution[:, 0], label="c1 (t)")
-plt.plot(t_span, solution[:, 1], label="c2 (t)")
+#plt.plot(t_span, solution[:, 1], label="c2 (t)")
 plt.xlabel("Time")
 plt.ylabel("Concentrations")
 plt.legend()
